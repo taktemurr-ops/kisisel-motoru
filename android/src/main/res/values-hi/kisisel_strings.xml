@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">लाइव वॉलपेपर</string>
     <string name="kisisel_wallpaper_desc">कोड से बने मौलिक चलते दृश्य</string>
     <string name="kisisel_dream_label">चार्जिंग घड़ी (स्क्रीनसेवर)</string>
+    <string name="kisisel_charge_label">चार्जिंग एनिमेशन</string>
+    <string name="kisisel_edge_label">एज लाइटिंग</string>
     <string name="kisisel_w_clock">घड़ी</string>
     <string name="kisisel_w_date">तारीख</string>
     <string name="kisisel_w_countdown">उलटी गिनती</string>

@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Kertas Dinding Hidup</string>
     <string name="kisisel_wallpaper_desc">Adegan animasi asli dilukis dengan kod</string>
     <string name="kisisel_dream_label">Jam Pengecasan (Penyelamat Skrin)</string>
+    <string name="kisisel_charge_label">Animasi Pengecasan</string>
+    <string name="kisisel_edge_label">Lampu Tepi Skrin</string>
     <string name="kisisel_w_clock">Jam</string>
     <string name="kisisel_w_date">Tarikh</string>
     <string name="kisisel_w_countdown">Kiraan detik</string>

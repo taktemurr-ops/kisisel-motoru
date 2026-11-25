@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 
@@ -60,6 +61,18 @@ public class KisiselMotoruPlugin implements FlutterPlugin, MethodChannel.MethodC
         }
     }
 
+    /** Kullanıcı bildirim erişimini bu uygulamanın dinleyicisine vermiş mi. */
+    private boolean listenerGranted() {
+        String flat = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
+        if (flat == null || flat.isEmpty()) return false;
+        ComponentName me = new ComponentName(context, EdgeNotificationService.class);
+        for (String part : flat.split(":")) {
+            ComponentName cn = ComponentName.unflattenFromString(part);
+            if (me.equals(cn)) return true;
+        }
+        return false;
+    }
+
     private static Class<?> widgetClass(String type) {
         switch (type == null ? "" : type) {
             case "clock": return ClockWidget.class;
@@ -79,6 +92,8 @@ public class KisiselMotoruPlugin implements FlutterPlugin, MethodChannel.MethodC
                     String f = call.argument("feature");
                     if ("wallpaper".equals(f)) enableComponent(SceneWallpaperService.class);
                     else if ("dream".equals(f)) enableComponent(ClockDreamService.class);
+                    else if ("chargeDream".equals(f)) enableComponent(ChargeDreamService.class);
+                    else if ("edge".equals(f)) enableComponent(EdgeNotificationService.class);
                     else if ("widgets".equals(f)) for (Class<?> c : WIDGETS) enableComponent(c);
                     result.success(null);
                     break;
@@ -111,8 +126,49 @@ public class KisiselMotoruPlugin implements FlutterPlugin, MethodChannel.MethodC
                     result.success(null);
                     break;
                 }
+                case "setCharge":
+                case "setEdge": {
+                    boolean charge = "setCharge".equals(call.method);
+                    Object args = call.arguments;
+                    JSONObject j = args instanceof Map ? new JSONObject((Map<?, ?>) args) : new JSONObject();
+                    Object colors = args instanceof Map ? ((Map<?, ?>) args).get("colors") : null;
+                    SharedPreferences.Editor e = NativePrefs.get(context).edit();
+                    e.putString(charge ? "charge_json" : "edge_json", j.toString());
+                    if (colors instanceof List) e.putString(charge ? "charge_colors" : "edge_colors", NativePrefs.joinColors((List<?>) colors));
+                    e.apply();
+                    result.success(null);
+                    break;
+                }
+                case "edgeStatus": {
+                    java.util.HashMap<String, Object> m = new java.util.HashMap<>();
+                    m.put("listener", listenerGranted());
+                    m.put("overlay", EdgeOverlay.canDraw(context));
+                    result.success(m);
+                    break;
+                }
+                case "openNotificationAccess": {
+                    enableComponent(EdgeNotificationService.class);
+                    result.success(start(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
+                        || start(new Intent(Settings.ACTION_SETTINGS)));
+                    break;
+                }
+                case "openOverlaySettings": {
+                    boolean ok = false;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        ok = start(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                            Uri.parse("package:" + context.getPackageName())))
+                            || start(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION));
+                    }
+                    result.success(ok);
+                    break;
+                }
+                case "testEdge": {
+                    result.success(EdgeOverlay.show(context));
+                    break;
+                }
                 case "openDreamSettings": {
-                    enableComponent(ClockDreamService.class);
+                    Boolean chargeArg = call.argument("charge");
+                    enableComponent(Boolean.TRUE.equals(chargeArg) ? ChargeDreamService.class : ClockDreamService.class);
                     result.success(start(new Intent(Settings.ACTION_DREAM_SETTINGS))
                         || start(new Intent(Settings.ACTION_DISPLAY_SETTINGS)));
                     break;

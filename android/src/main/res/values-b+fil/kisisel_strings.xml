@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Live Wallpaper</string>
     <string name="kisisel_wallpaper_desc">Orihinal na gumagalaw na eksenang iginuhit sa code</string>
     <string name="kisisel_dream_label">Charging Clock (Screensaver)</string>
+    <string name="kisisel_charge_label">Charging Animation</string>
+    <string name="kisisel_edge_label">Edge Lighting</string>
     <string name="kisisel_w_clock">Orasan</string>
     <string name="kisisel_w_date">Petsa</string>
     <string name="kisisel_w_countdown">Countdown</string>

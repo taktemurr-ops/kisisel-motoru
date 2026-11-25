@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">วอลเปเปอร์เคลื่อนไหว</string>
     <string name="kisisel_wallpaper_desc">ฉากเคลื่อนไหวต้นฉบับที่วาดด้วยโค้ด</string>
     <string name="kisisel_dream_label">นาฬิกาขณะชาร์จ (สกรีนเซฟเวอร์)</string>
+    <string name="kisisel_charge_label">แอนิเมชันการชาร์จ</string>
+    <string name="kisisel_edge_label">ไฟขอบจอ</string>
     <string name="kisisel_w_clock">นาฬิกา</string>
     <string name="kisisel_w_date">วันที่</string>
     <string name="kisisel_w_countdown">นับถอยหลัง</string>

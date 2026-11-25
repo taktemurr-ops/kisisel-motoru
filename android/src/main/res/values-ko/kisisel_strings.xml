@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">라이브 배경화면</string>
     <string name="kisisel_wallpaper_desc">코드로 그린 오리지널 움직이는 장면</string>
     <string name="kisisel_dream_label">충전 시계 (화면 보호기)</string>
+    <string name="kisisel_charge_label">충전 애니메이션</string>
+    <string name="kisisel_edge_label">엣지 라이팅</string>
     <string name="kisisel_w_clock">시계</string>
     <string name="kisisel_w_date">날짜</string>
     <string name="kisisel_w_countdown">카운트다운</string>

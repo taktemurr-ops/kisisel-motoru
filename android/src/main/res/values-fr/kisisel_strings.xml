@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Fonds d\'écran animés</string>
     <string name="kisisel_wallpaper_desc">Scènes animées originales dessinées en code</string>
     <string name="kisisel_dream_label">Horloge de charge (économiseur)</string>
+    <string name="kisisel_charge_label">Animation de charge</string>
+    <string name="kisisel_edge_label">Éclairage des bords</string>
     <string name="kisisel_w_clock">Horloge</string>
     <string name="kisisel_w_date">Date</string>
     <string name="kisisel_w_countdown">Compte à rebours</string>

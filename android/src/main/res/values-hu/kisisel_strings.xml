@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Élő háttérképek</string>
     <string name="kisisel_wallpaper_desc">Kóddal rajzolt, eredeti animált jelenetek</string>
     <string name="kisisel_dream_label">Töltési óra (képernyővédő)</string>
+    <string name="kisisel_charge_label">Töltési animáció</string>
+    <string name="kisisel_edge_label">Élvilágítás</string>
     <string name="kisisel_w_clock">Óra</string>
     <string name="kisisel_w_date">Dátum</string>
     <string name="kisisel_w_countdown">Visszaszámláló</string>

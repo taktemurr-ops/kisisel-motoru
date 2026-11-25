@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Ζωντανές ταπετσαρίες</string>
     <string name="kisisel_wallpaper_desc">Πρωτότυπες κινούμενες σκηνές σχεδιασμένες με κώδικα</string>
     <string name="kisisel_dream_label">Ρολόι φόρτισης (προφύλαξη οθόνης)</string>
+    <string name="kisisel_charge_label">Κινούμενη εικόνα φόρτισης</string>
+    <string name="kisisel_edge_label">Φωτισμός άκρων</string>
     <string name="kisisel_w_clock">Ρολόι</string>
     <string name="kisisel_w_date">Ημερομηνία</string>
     <string name="kisisel_w_countdown">Αντίστροφη μέτρηση</string>

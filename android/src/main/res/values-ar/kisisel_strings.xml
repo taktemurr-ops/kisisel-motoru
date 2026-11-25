@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">خلفيات حية</string>
     <string name="kisisel_wallpaper_desc">مشاهد متحركة أصلية مرسومة بالشيفرة</string>
     <string name="kisisel_dream_label">ساعة الشحن (شاشة توقف)</string>
+    <string name="kisisel_charge_label">رسوم متحركة للشحن</string>
+    <string name="kisisel_edge_label">إضاءة الحواف</string>
     <string name="kisisel_w_clock">ساعة</string>
     <string name="kisisel_w_date">التاريخ</string>
     <string name="kisisel_w_countdown">عد تنازلي</string>

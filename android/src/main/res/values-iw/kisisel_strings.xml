@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">טפטים חיים</string>
     <string name="kisisel_wallpaper_desc">סצנות מונפשות מקוריות שצוירו בקוד</string>
     <string name="kisisel_dream_label">שעון טעינה (שומר מסך)</string>
+    <string name="kisisel_charge_label">אנימציית טעינה</string>
+    <string name="kisisel_edge_label">תאורת קצוות</string>
     <string name="kisisel_w_clock">שעון</string>
     <string name="kisisel_w_date">תאריך</string>
     <string name="kisisel_w_countdown">ספירה לאחור</string>

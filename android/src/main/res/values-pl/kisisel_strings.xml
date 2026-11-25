@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Animowane tapety</string>
     <string name="kisisel_wallpaper_desc">Oryginalne animowane sceny rysowane kodem</string>
     <string name="kisisel_dream_label">Zegar ładowania (wygaszacz)</string>
+    <string name="kisisel_charge_label">Animacja ładowania</string>
+    <string name="kisisel_edge_label">Podświetlenie krawędzi</string>
     <string name="kisisel_w_clock">Zegar</string>
     <string name="kisisel_w_date">Data</string>
     <string name="kisisel_w_countdown">Odliczanie</string>

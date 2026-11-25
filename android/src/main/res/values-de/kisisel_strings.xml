@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Live-Hintergründe</string>
     <string name="kisisel_wallpaper_desc">Originelle, per Code gezeichnete Szenen</string>
     <string name="kisisel_dream_label">Ladeuhr (Bildschirmschoner)</string>
+    <string name="kisisel_charge_label">Lade-Animation</string>
+    <string name="kisisel_edge_label">Randbeleuchtung</string>
     <string name="kisisel_w_clock">Uhr</string>
     <string name="kisisel_w_date">Datum</string>
     <string name="kisisel_w_countdown">Countdown</string>

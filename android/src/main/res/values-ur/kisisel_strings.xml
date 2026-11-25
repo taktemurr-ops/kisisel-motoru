@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">لائیو وال پیپر</string>
     <string name="kisisel_wallpaper_desc">کوڈ سے بنے اصل متحرک مناظر</string>
     <string name="kisisel_dream_label">چارجنگ گھڑی (اسکرین سیور)</string>
+    <string name="kisisel_charge_label">چارجنگ اینیمیشن</string>
+    <string name="kisisel_edge_label">کناروں کی روشنی</string>
     <string name="kisisel_w_clock">گھڑی</string>
     <string name="kisisel_w_date">تاریخ</string>
     <string name="kisisel_w_countdown">الٹی گنتی</string>

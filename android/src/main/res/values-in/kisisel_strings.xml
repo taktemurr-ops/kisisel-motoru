@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Wallpaper Hidup</string>
     <string name="kisisel_wallpaper_desc">Adegan animasi orisinal yang digambar dengan kode</string>
     <string name="kisisel_dream_label">Jam Pengisian (Screensaver)</string>
+    <string name="kisisel_charge_label">Animasi Pengisian Daya</string>
+    <string name="kisisel_edge_label">Lampu Tepi Layar</string>
     <string name="kisisel_w_clock">Jam</string>
     <string name="kisisel_w_date">Tanggal</string>
     <string name="kisisel_w_countdown">Hitung mundur</string>

@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Live-achtergronden</string>
     <string name="kisisel_wallpaper_desc">Originele bewegende scènes, getekend in code</string>
     <string name="kisisel_dream_label">Laadklok (schermbeveiliging)</string>
+    <string name="kisisel_charge_label">Laadanimatie</string>
+    <string name="kisisel_edge_label">Randverlichting</string>
     <string name="kisisel_w_clock">Klok</string>
     <string name="kisisel_w_date">Datum</string>
     <string name="kisisel_w_countdown">Aftellen</string>

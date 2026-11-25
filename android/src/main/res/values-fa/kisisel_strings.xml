@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">تصاویر زمینهٔ زنده</string>
     <string name="kisisel_wallpaper_desc">صحنه‌های متحرک اصیل که با کد کشیده شده‌اند</string>
     <string name="kisisel_dream_label">ساعت شارژ (محافظ صفحه)</string>
+    <string name="kisisel_charge_label">انیمیشن شارژ</string>
+    <string name="kisisel_edge_label">نور لبه‌ها</string>
     <string name="kisisel_w_clock">ساعت</string>
     <string name="kisisel_w_date">تاریخ</string>
     <string name="kisisel_w_countdown">شمارش معکوس</string>

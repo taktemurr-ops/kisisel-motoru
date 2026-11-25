@@ -14,7 +14,7 @@ import 'package:flutter/services.dart';
 import 'package:home_widget/home_widget.dart';
 
 /// Yerel bileşen grupları.
-enum NativeFeature { wallpaper, widgets, dream }
+enum NativeFeature { wallpaper, widgets, dream, chargeDream, edge }
 
 /// Android widget sağlayıcı sınıfları (tam adlar; manifestle aynı).
 const String kWidgetPackage = 'com.gamestudio100.kisisel_motoru';
@@ -65,7 +65,31 @@ class KisiselNative {
   static Future<void> setDream(Map<String, Object?> prefs) => _call<void>('setDream', prefs);
 
   /// Sistem ekran koruyucu ayarlarını açar. Açılamazsa false.
-  static Future<bool> openDreamSettings() async => await _call<bool>('openDreamSettings') ?? false;
+  /// [charge] true ise şarj animasyonu, değilse saat ekran koruyucusu etkinleştirilir.
+  static Future<bool> openDreamSettings({bool charge = false}) async =>
+      await _call<bool>('openDreamSettings', {'charge': charge}) ?? false;
+
+  /// Şarj animasyonu ekran koruyucusunun ayarları (biçim, renkler…).
+  static Future<void> setCharge(Map<String, Object?> prefs) => _call<void>('setCharge', prefs);
+
+  /// Kenar ışıklandırma ayarları (Android bildirim dinleyicisi okur).
+  static Future<void> setEdge(Map<String, Object?> prefs) => _call<void>('setEdge', prefs);
+
+  /// Kenar ışıklandırma izinleri: bildirim erişimi ve diğer uygulamaların
+  /// üzerinde gösterme. Android dışında ikisi de false.
+  static Future<({bool listener, bool overlay})> edgeStatus() async {
+    final m = await _call<Map<Object?, Object?>>('edgeStatus');
+    return (listener: m?['listener'] == true, overlay: m?['overlay'] == true);
+  }
+
+  /// Sistem "Bildirim erişimi" ayarını açar.
+  static Future<bool> openNotificationAccess() async => await _call<bool>('openNotificationAccess') ?? false;
+
+  /// Sistem "Diğer uygulamaların üzerinde göster" ayarını açar.
+  static Future<bool> openOverlaySettings() async => await _call<bool>('openOverlaySettings') ?? false;
+
+  /// Kenar ışığını hemen bir kez gösterir (izin varsa). Gösterildiyse true.
+  static Future<bool> testEdge() async => await _call<bool>('testEdge') ?? false;
 
   /// Başlatıcı "ana ekrana sabitle" isteğini destekliyor mu (Android 8+).
   static Future<bool> canPinWidgets() async => await _call<bool>('canPinWidgets') ?? false;

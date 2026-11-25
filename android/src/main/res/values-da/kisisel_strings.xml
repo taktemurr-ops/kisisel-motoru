@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Levende baggrunde</string>
     <string name="kisisel_wallpaper_desc">Originale animerede scener tegnet med kode</string>
     <string name="kisisel_dream_label">Opladningsur (pauseskærm)</string>
+    <string name="kisisel_charge_label">Opladningsanimation</string>
+    <string name="kisisel_edge_label">Kantbelysning</string>
     <string name="kisisel_w_clock">Ur</string>
     <string name="kisisel_w_date">Dato</string>
     <string name="kisisel_w_countdown">Nedtælling</string>

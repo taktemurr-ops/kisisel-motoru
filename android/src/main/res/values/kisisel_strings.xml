@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Live Wallpapers</string>
     <string name="kisisel_wallpaper_desc">Original animated scenes drawn in code</string>
     <string name="kisisel_dream_label">Charging Clock (Screensaver)</string>
+    <string name="kisisel_charge_label">Charging Animation</string>
+    <string name="kisisel_edge_label">Edge Lighting</string>
     <string name="kisisel_w_clock">Clock</string>
     <string name="kisisel_w_date">Date</string>
     <string name="kisisel_w_countdown">Countdown</string>

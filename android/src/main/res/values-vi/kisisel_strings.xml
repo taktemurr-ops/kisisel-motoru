@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Hình nền động</string>
     <string name="kisisel_wallpaper_desc">Cảnh chuyển động nguyên bản vẽ bằng mã</string>
     <string name="kisisel_dream_label">Đồng hồ khi sạc (bảo vệ màn hình)</string>
+    <string name="kisisel_charge_label">Hiệu ứng sạc pin</string>
+    <string name="kisisel_edge_label">Đèn viền màn hình</string>
     <string name="kisisel_w_clock">Đồng hồ</string>
     <string name="kisisel_w_date">Ngày</string>
     <string name="kisisel_w_countdown">Đếm ngược</string>

@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Živé tapety</string>
     <string name="kisisel_wallpaper_desc">Originální animované scény kreslené kódem</string>
     <string name="kisisel_dream_label">Hodiny při nabíjení (spořič)</string>
+    <string name="kisisel_charge_label">Animace nabíjení</string>
+    <string name="kisisel_edge_label">Osvětlení okrajů</string>
     <string name="kisisel_w_clock">Hodiny</string>
     <string name="kisisel_w_date">Datum</string>
     <string name="kisisel_w_countdown">Odpočet</string>

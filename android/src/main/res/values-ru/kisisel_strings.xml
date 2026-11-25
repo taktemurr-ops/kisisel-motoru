@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Живые обои</string>
     <string name="kisisel_wallpaper_desc">Оригинальные анимированные сцены, нарисованные кодом</string>
     <string name="kisisel_dream_label">Часы при зарядке (заставка)</string>
+    <string name="kisisel_charge_label">Анимация зарядки</string>
+    <string name="kisisel_edge_label">Подсветка краёв</string>
     <string name="kisisel_w_clock">Часы</string>
     <string name="kisisel_w_date">Дата</string>
     <string name="kisisel_w_countdown">Обратный отсчёт</string>

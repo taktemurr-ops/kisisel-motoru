@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Kişiselleştirme yerel bileşenleri. Hepsi varsayılan olarak kapalıdır
          (enabled=false); kullanıcı ilgili aracı açınca uygulama tarafından
-         etkinleştirilir. Ek izin istenmez. -->
+         etkinleştirilir. Tek ek izin kenar ışıklandırma içindir:
+         SYSTEM_ALERT_WINDOW ("diğer uygulamaların üzerinde göster"); kullanıcı
+         bunu ve bildirim erişimini sistem ayarlarından kendisi açar. -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-feature android:name="android.software.live_wallpaper" android:required="false" />
     <uses-feature android:name="android.software.app_widgets" android:required="false" />
 
@@ -29,6 +32,31 @@
             <intent-filter>
                 <action android:name="android.service.dreams.DreamService" />
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <!-- Şarj animasyonu ekran koruyucusu -->
+        <service
+            android:name="com.gamestudio100.kisisel_motoru.ChargeDreamService"
+            android:label="@string/kisisel_charge_label"
+            android:enabled="false"
+            android:exported="true"
+            android:permission="android.permission.BIND_DREAM_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.dreams.DreamService" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <!-- Kenar ışıklandırma: yalnız "bildirim geldi" bilgisini kullanır -->
+        <service
+            android:name="com.gamestudio100.kisisel_motoru.EdgeNotificationService"
+            android:label="@string/kisisel_edge_label"
+            android:enabled="false"
+            android:exported="true"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
 

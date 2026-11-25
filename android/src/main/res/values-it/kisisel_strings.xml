@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Sfondi animati</string>
     <string name="kisisel_wallpaper_desc">Scene animate originali disegnate in codice</string>
     <string name="kisisel_dream_label">Orologio di ricarica (salvaschermo)</string>
+    <string name="kisisel_charge_label">Animazione di ricarica</string>
+    <string name="kisisel_edge_label">Illuminazione dei bordi</string>
     <string name="kisisel_w_clock">Orologio</string>
     <string name="kisisel_w_date">Data</string>
     <string name="kisisel_w_countdown">Conto alla rovescia</string>

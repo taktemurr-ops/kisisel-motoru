@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Papéis de parede animados</string>
     <string name="kisisel_wallpaper_desc">Cenas animadas originais desenhadas em código</string>
     <string name="kisisel_dream_label">Relógio de carregamento (descanso de tela)</string>
+    <string name="kisisel_charge_label">Animação de carregamento</string>
+    <string name="kisisel_edge_label">Iluminação das bordas</string>
     <string name="kisisel_w_clock">Relógio</string>
     <string name="kisisel_w_date">Data</string>
     <string name="kisisel_w_countdown">Contagem regressiva</string>

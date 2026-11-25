@@ -4,6 +4,8 @@
     <string name="kisisel_wallpaper_label">Imagini de fundal animate</string>
     <string name="kisisel_wallpaper_desc">Scene animate originale desenate prin cod</string>
     <string name="kisisel_dream_label">Ceas de încărcare (screensaver)</string>
+    <string name="kisisel_charge_label">Animație de încărcare</string>
+    <string name="kisisel_edge_label">Iluminarea marginilor</string>
     <string name="kisisel_w_clock">Ceas</string>
     <string name="kisisel_w_date">Dată</string>
     <string name="kisisel_w_countdown">Numărătoare inversă</string>

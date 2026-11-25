@@ -1,11 +1,15 @@
-/// Üretilmiş dosya (proto/apps/kisisel/mkengine.py). Kişiselleştirme'nin 5 aracı.
+/// Üretilmiş dosya (proto/apps/kisisel/mkengine.py). Kişiselleştirme'nin 9 aracı.
 library;
 
 import 'package:flutter/material.dart';
 import 'package:studio_core/apps/apps.dart';
 
+import 'tools/charge_anim.dart';
 import 'tools/clock.dart';
+import 'tools/edge_light.dart';
+import 'tools/fancy_text.dart';
 import 'tools/icons.dart';
+import 'tools/palette.dart';
 import 'tools/sounds.dart';
 import 'tools/wallpaper.dart';
 import 'tools/widgets_pack.dart';
@@ -14,6 +18,7 @@ import 'tx.dart';
 /// Kategoriler (merkezdeki çip sırası).
 final List<AppCategory> kisiselCategories = [
   AppCategory(id: 'screen', title: kKisCat['cat_screen']!, icon: Icons.smartphone_rounded),
+  AppCategory(id: 'style', title: kKisCat['cat_style']!, icon: Icons.brush_rounded),
   AppCategory(id: 'sound', title: kKisCat['cat_sound']!, icon: Icons.graphic_eq_rounded),
 ];
 
@@ -69,6 +74,46 @@ final List<AppTool> kisiselTools = [
     keywords: const ['clock', 'charging', 'screensaver', 'saat'],
     builder: (context, t) => ChargeClockTool(t),
   ),
+  AppTool(
+    id: 'uyg-renk-paleti-uretici',
+    title: kKisTitle['uyg-renk-paleti-uretici']!,
+    tagline: kKisTag['uyg-renk-paleti-uretici']!,
+    icon: Icons.color_lens_rounded,
+    color: const Color(0xFFF6AD55),
+    category: 'style',
+    keywords: const ['color', 'colour', 'palette', 'hex', 'theme', 'wcag'],
+    builder: (context, t) => PaletteTool(t),
+  ),
+  AppTool(
+    id: 'uyg-sik-yazi-uretici',
+    title: kKisTitle['uyg-sik-yazi-uretici']!,
+    tagline: kKisTag['uyg-sik-yazi-uretici']!,
+    icon: Icons.text_fields_rounded,
+    color: const Color(0xFFF687B3),
+    category: 'style',
+    keywords: const ['font', 'fancy', 'unicode', 'symbol', 'emoji'],
+    builder: (context, t) => FancyTextTool(t),
+  ),
+  AppTool(
+    id: 'uyg-kenar-isiklandirma',
+    title: kKisTitle['uyg-kenar-isiklandirma']!,
+    tagline: kKisTag['uyg-kenar-isiklandirma']!,
+    icon: Icons.border_outer_rounded,
+    color: const Color(0xFF4FD1C5),
+    category: 'screen',
+    keywords: const ['edge', 'lighting', 'notification', 'glow'],
+    builder: (context, t) => EdgeLightTool(t),
+  ),
+  AppTool(
+    id: 'uyg-sarj-animasyonu',
+    title: kKisTitle['uyg-sarj-animasyonu']!,
+    tagline: kKisTag['uyg-sarj-animasyonu']!,
+    icon: Icons.battery_charging_full_rounded,
+    color: const Color(0xFF68D391),
+    category: 'screen',
+    keywords: const ['charging', 'battery', 'animation', 'screensaver'],
+    builder: (context, t) => ChargeAnimTool(t),
+  ),
 ];
 
 /// Depo adıyla araç (ör. 'uyg-widget-paketi').
@@ -90,4 +135,5 @@ const ApprovedHubStyle kisiselHubStyle = ApprovedHubStyle(
 /// Öne çıkanlar.
 const List<String> kisiselFeatured = [
   'uyg-bildirim-ve-zil-sesi-paketi', 'uyg-canli-duvar-kagidi', 'uyg-kilit-ekrani-saati',
+  'uyg-renk-paleti-uretici', 'uyg-sik-yazi-uretici',
 ];
