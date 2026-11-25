@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">Fondos animados</string>
+    <string name="kisisel_wallpaper_desc">Escenas animadas originales dibujadas con código</string>
+    <string name="kisisel_dream_label">Reloj de carga (salvapantallas)</string>
+    <string name="kisisel_w_clock">Reloj</string>
+    <string name="kisisel_w_date">Fecha</string>
+    <string name="kisisel_w_countdown">Cuenta atrás</string>
+    <string name="kisisel_w_note">Nota</string>
+    <string name="kisisel_w_battery">Batería</string>
+</resources>

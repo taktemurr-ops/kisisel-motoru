@@ -2,7 +2,8 @@
 /// taraf kilit ekranı değiştirmek Play politikalarına aykırı olduğundan
 /// uygulama kilit ekranına dokunmaz: tam ekran bir saat gösterir, şarjdayken
 /// ekranı açık tutar ve ekran yanığına karşı konumunu yavaşça kaydırır.
-/// Sistemin "ekran koruyucu" (Android DreamService) kaydı bu sürümde yoktur.
+/// Android'de aynı saat sistemin "ekran koruyucu"su (DreamService) olarak da
+/// seçilebilir; ayarlar yerel servise aktarılır (android/ klasörü).
 library;
 
 import 'dart:async';
@@ -17,6 +18,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../common.dart';
 import '../core.dart';
+import '../platform/native.dart';
 
 /// Saat ayarları.
 class ClockPrefs {
@@ -182,7 +184,30 @@ class _ChargeClockState extends State<ChargeClockTool> {
         _extras = ex;
         if (!_extras && _p.palette >= kFreePalettes) _p = _p.copy(palette: 0);
       });
+      if (KisiselNative.android) {
+        await KisiselNative.enable(NativeFeature.dream);
+        await _pushNative();
+      }
     }();
+  }
+
+  /// Ekran koruyucu servisine ayarları ve renkleri aktarır (Android).
+  Future<void> _pushNative() {
+    final pal = kPalettes[_p.palette];
+    return KisiselNative.setDream({
+      ..._p.toJson(),
+      'fg': pal[3],
+      'accent': pal[2],
+    });
+  }
+
+  Future<void> _openDream() async {
+    await _pushNative();
+    await KisiselNative.enable(NativeFeature.dream);
+    final ok = await KisiselNative.openDreamSettings();
+    if (!ok && mounted) {
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(content: Text(t.tx('not_available'))));
+    }
   }
 
   @override
@@ -194,6 +219,7 @@ class _ChargeClockState extends State<ChargeClockTool> {
   void _set(ClockPrefs p) {
     setState(() => _p = p);
     t.store.writeMap('clock', p.toJson());
+    if (KisiselNative.android) _pushNative();
   }
 
   Widget _switch(String label, bool v, ValueChanged<bool> on) =>
@@ -221,6 +247,8 @@ class _ChargeClockState extends State<ChargeClockTool> {
           builder: (_) => _FullClock(t: t, p: _p),
         )),
       ),
+      if (KisiselNative.android)
+        AppButton(label: L(t, 'screensaver_settings'), icon: Icons.settings_brightness_rounded, onPressed: _openDream),
       AppPanel(
         child: Column(children: [
           Choice<bool>(
@@ -252,7 +280,10 @@ class _ChargeClockState extends State<ChargeClockTool> {
         ]),
       ),
       if (!_extras) UnlockButton(t: t, onUnlocked: () => setState(() => _extras = true)),
-      AppInfoCard(L(t, kIsWeb ? 'clock_note_web' : 'clock_note'), icon: Icons.info_outline_rounded),
+      AppInfoCard(
+        L(t, kIsWeb ? 'clock_note_web' : (KisiselNative.android ? 'clock_note_android' : 'clock_note')),
+        icon: Icons.info_outline_rounded,
+      ),
     ]);
   }
 }

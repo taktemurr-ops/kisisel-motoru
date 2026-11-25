@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">Levende bakgrunner</string>
+    <string name="kisisel_wallpaper_desc">Originale animerte scener tegnet med kode</string>
+    <string name="kisisel_dream_label">Ladeklokke (skjermsparer)</string>
+    <string name="kisisel_w_clock">Klokke</string>
+    <string name="kisisel_w_date">Dato</string>
+    <string name="kisisel_w_countdown">Nedtelling</string>
+    <string name="kisisel_w_note">Notat</string>
+    <string name="kisisel_w_battery">Batteri</string>
+</resources>

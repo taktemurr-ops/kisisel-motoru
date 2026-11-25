@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">خلفيات حية</string>
+    <string name="kisisel_wallpaper_desc">مشاهد متحركة أصلية مرسومة بالشيفرة</string>
+    <string name="kisisel_dream_label">ساعة الشحن (شاشة توقف)</string>
+    <string name="kisisel_w_clock">ساعة</string>
+    <string name="kisisel_w_date">التاريخ</string>
+    <string name="kisisel_w_countdown">عد تنازلي</string>
+    <string name="kisisel_w_note">ملاحظة</string>
+    <string name="kisisel_w_battery">البطارية</string>
+</resources>

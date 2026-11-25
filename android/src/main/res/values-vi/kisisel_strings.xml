@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">Hình nền động</string>
+    <string name="kisisel_wallpaper_desc">Cảnh chuyển động nguyên bản vẽ bằng mã</string>
+    <string name="kisisel_dream_label">Đồng hồ khi sạc (bảo vệ màn hình)</string>
+    <string name="kisisel_w_clock">Đồng hồ</string>
+    <string name="kisisel_w_date">Ngày</string>
+    <string name="kisisel_w_countdown">Đếm ngược</string>
+    <string name="kisisel_w_note">Ghi chú</string>
+    <string name="kisisel_w_battery">Pin</string>
+</resources>

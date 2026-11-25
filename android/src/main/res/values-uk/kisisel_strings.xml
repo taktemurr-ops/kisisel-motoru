@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">Живі шпалери</string>
+    <string name="kisisel_wallpaper_desc">Оригінальні анімовані сцени, намальовані кодом</string>
+    <string name="kisisel_dream_label">Годинник під час заряджання (заставка)</string>
+    <string name="kisisel_w_clock">Годинник</string>
+    <string name="kisisel_w_date">Дата</string>
+    <string name="kisisel_w_countdown">Зворотний відлік</string>
+    <string name="kisisel_w_note">Нотатка</string>
+    <string name="kisisel_w_battery">Батарея</string>
+</resources>

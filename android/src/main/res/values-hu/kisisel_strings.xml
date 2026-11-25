@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">Élő háttérképek</string>
+    <string name="kisisel_wallpaper_desc">Kóddal rajzolt, eredeti animált jelenetek</string>
+    <string name="kisisel_dream_label">Töltési óra (képernyővédő)</string>
+    <string name="kisisel_w_clock">Óra</string>
+    <string name="kisisel_w_date">Dátum</string>
+    <string name="kisisel_w_countdown">Visszaszámláló</string>
+    <string name="kisisel_w_note">Jegyzet</string>
+    <string name="kisisel_w_battery">Akkumulátor</string>
+</resources>

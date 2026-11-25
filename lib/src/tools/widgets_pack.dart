@@ -1,10 +1,13 @@
 /// Widget paketi: saat, tarih, geri sayım, not ve pil kutucuklarından oluşan
 /// bir pano. Uygulama içinde (ör. tablette masa ekranı olarak) tam ekran
-/// gösterilir; her kutucuk PNG olarak kaydedilebilir. Ana ekran widget'ı
-/// (Android AppWidget / iOS WidgetKit) bu sürümde yoktur; ekranda yazılır.
+/// gösterilir; her kutucuk PNG olarak kaydedilebilir. Android'de her tür,
+/// ana ekran widget'ı (AppWidget) olarak da eklenir ve panodaki kendi türünün
+/// ilk kutucuğunu gösterir (veri home_widget ile aktarılır). iOS WidgetKit
+/// uzantısının kaynakları merkez uygulamanın ios_widget/ klasöründedir.
 library;
 
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:battery_plus/battery_plus.dart';
 import 'package:flutter/foundation.dart';
@@ -13,6 +16,7 @@ import 'package:studio_core/apps/apps.dart';
 
 import '../common.dart';
 import '../core.dart';
+import '../platform/native.dart';
 
 const List<String> kWidgetTypes = ['clock', 'date', 'countdown', 'note', 'battery'];
 
@@ -130,6 +134,7 @@ class _WidgetPackState extends State<WidgetPackTool> {
   Timer? _timer;
   int? _battery;
   bool _extras = false;
+  bool _canPin = false;
   final Map<String, GlobalKey> _keys = {};
 
   @override
@@ -161,7 +166,48 @@ class _WidgetPackState extends State<WidgetPackTool> {
         _battery = b;
         _extras = ex;
       });
+      if (KisiselNative.android) {
+        await KisiselNative.enable(NativeFeature.widgets);
+        final pin = await KisiselNative.canPinWidgets();
+        if (mounted) setState(() => _canPin = pin);
+      }
+      await _pushNative();
     }();
+  }
+
+  /// Ana ekran widget'larına veri: her türün ilk kutucuğu.
+  Future<void> _pushNative() {
+    if (!KisiselNative.android && !KisiselNative.ios) return Future<void>.value();
+    final data = <String, String>{};
+    for (final type in kWidgetTypes) {
+      final it = _items.where((x) => x.type == type).firstOrNull;
+      final p = kPalettes[it?.palette ?? 0];
+      data['w_$type'] = jsonEncode({
+        'c0': p[0], 'c1': p[1], 'c2': p[2], 'fg': p[3],
+        'title': it?.title ?? '',
+        'text': it?.text ?? '',
+        'date': it?.date?.millisecondsSinceEpoch ?? 0,
+        'days': L(t, 'days'),
+        'hours': L(t, 'hours_short'),
+        'passed': L(t, 'passed'),
+        'pick': L(t, 'pick_date'),
+        'label': L(t, 'w_$type'),
+      });
+    }
+    return KisiselNative.pushWidgets(data);
+  }
+
+  Future<void> _pin(BoardItem it) async {
+    // Bu kutucuk kendi türünün ilki değilse başa alınır (widget ilkini gösterir).
+    final first = _items.firstWhere((x) => x.type == it.type);
+    if (first.id != it.id) {
+      _set([it, for (final x in _items) if (x.id != it.id) x]);
+    }
+    await _pushNative();
+    final ok = await KisiselNative.pinWidget(it.type);
+    if (!ok && mounted) {
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(content: Text(t.tx('not_available'))));
+    }
   }
 
   @override
@@ -173,6 +219,7 @@ class _WidgetPackState extends State<WidgetPackTool> {
   void _set(List<BoardItem> l) {
     setState(() => _items = l);
     t.store.writeList('board', [for (final x in l) x.toJson()]);
+    unawaited(_pushNative());
   }
 
   Future<void> _edit([BoardItem? e]) async {
@@ -269,7 +316,7 @@ class _WidgetPackState extends State<WidgetPackTool> {
       AppButton(label: L(t, 'add'), icon: Icons.add_rounded, onPressed: () => _edit()),
       AppButton(label: L(t, 'fullscreen'), icon: Icons.fullscreen_rounded, onPressed: _items.isEmpty ? null : _full),
       if (!_extras) UnlockButton(t: t, onUnlocked: () => setState(() => _extras = true)),
-      AppInfoCard(L(t, 'widget_note'), icon: Icons.info_outline_rounded),
+      AppInfoCard(L(t, KisiselNative.android ? 'widget_note_android' : 'widget_note'), icon: Icons.info_outline_rounded),
     ]);
   }
 
@@ -278,6 +325,8 @@ class _WidgetPackState extends State<WidgetPackTool> {
       context: context,
       builder: (c) => SafeArea(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
+          if (_canPin)
+            ListTile(leading: const Icon(Icons.add_to_home_screen_rounded), title: Text(L(t, 'add_home')), onTap: () => Navigator.pop(c, 'pin')),
           ListTile(leading: const Icon(Icons.download_rounded), title: Text(L(t, 'save_png')), onTap: () => Navigator.pop(c, 'png')),
           ListTile(leading: const Icon(Icons.delete_outline_rounded), title: Text(L(t, 'delete')), onTap: () => Navigator.pop(c, 'del')),
         ]),
@@ -285,6 +334,7 @@ class _WidgetPackState extends State<WidgetPackTool> {
     );
     if (!mounted) return;
     if (a == 'del') _set([for (final x in _items) if (x.id != it.id) x]);
+    if (a == 'pin') await _pin(it);
     if (a == 'png') {
       final png = await capturePng(_keys[it.id]!);
       if (png != null && mounted) await saveBytesAs(context, t, 'widget_${it.type}.png', png);

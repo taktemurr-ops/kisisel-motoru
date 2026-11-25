@@ -1,7 +1,8 @@
 /// Canlı duvar kağıdı: özgün, kodla çizilen hareketli sahneler. Uygulama
 /// içinde tam ekran oynatılır ve istenen an PNG olarak kaydedilir.
-/// Sistem canlı duvar kağıdı servisi (Android WallpaperService) bu sürümde
-/// yoktur; ekranda açıkça yazılır.
+/// Android'de seçilen sahne, renkler ve hız sistem canlı duvar kağıdı olarak
+/// ayarlanır (yerel WallpaperService, android/ klasörü). iOS uygulamalara
+/// canlı duvar kağıdı izni vermez: orada PNG kaydedilir.
 library;
 
 import 'dart:math' as math;
@@ -13,6 +14,7 @@ import 'package:studio_core/apps/apps.dart';
 
 import '../common.dart';
 import '../core.dart';
+import '../platform/native.dart';
 
 /// Sahne anahtarları (sonuncular ekstra).
 const List<String> kScenes = ['aurora', 'waves', 'bubbles', 'stars', 'orbits', 'rain'];
@@ -228,10 +230,29 @@ class _WallpaperState extends State<WallpaperTool> {
           _palette = 0;
         }
       });
+      if (KisiselNative.android) {
+        await KisiselNative.enable(NativeFeature.wallpaper);
+        await _pushNative();
+      }
     }();
   }
 
-  void _save() => t.store.writeMap('wall', {'scene': _scene, 'palette': _palette, 'speed': _speed});
+  Future<void> _pushNative() => KisiselNative.setWallpaper(_scene, kPalettes[_palette], _speed);
+
+  void _save() {
+    t.store.writeMap('wall', {'scene': _scene, 'palette': _palette, 'speed': _speed});
+    if (KisiselNative.android) _pushNative();
+  }
+
+  /// Sistem canlı duvar kağıdı önizlemesini açar (Android).
+  Future<void> _setLive() async {
+    await _pushNative();
+    await KisiselNative.enable(NativeFeature.wallpaper);
+    final ok = await KisiselNative.openLiveWallpaper();
+    if (!ok && mounted) {
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(content: Text(t.tx('not_available'))));
+    }
+  }
 
   Future<void> _full() async {
     final key = GlobalKey();
@@ -281,6 +302,8 @@ class _WallpaperState extends State<WallpaperTool> {
           ),
         ),
       ),
+      if (KisiselNative.android)
+        AppButton(label: L(t, 'set_live_wallpaper'), icon: Icons.wallpaper_rounded, onPressed: _setLive),
       AppButton(label: L(t, 'fullscreen'), icon: Icons.fullscreen_rounded, onPressed: _full),
       AppHeading(L(t, 'scene'), icon: Icons.auto_awesome_rounded),
       Padding(
@@ -325,7 +348,10 @@ class _WallpaperState extends State<WallpaperTool> {
         onChanged: (v) => setState(() => _speed = v),
         onChangeEnd: (_) => _save(),
       ),
-      AppInfoCard(L(t, kIsWeb ? 'wall_note_web' : 'wall_note'), icon: Icons.info_outline_rounded),
+      AppInfoCard(
+        L(t, kIsWeb ? 'wall_note_web' : (KisiselNative.android ? 'wall_note_android' : 'wall_note_ios')),
+        icon: Icons.info_outline_rounded,
+      ),
     ]);
   }
 }

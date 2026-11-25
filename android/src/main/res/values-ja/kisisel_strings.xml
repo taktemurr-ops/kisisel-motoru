@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">ライブ壁紙</string>
+    <string name="kisisel_wallpaper_desc">コードで描いたオリジナルの動く風景</string>
+    <string name="kisisel_dream_label">充電クロック (スクリーンセーバー)</string>
+    <string name="kisisel_w_clock">時計</string>
+    <string name="kisisel_w_date">日付</string>
+    <string name="kisisel_w_countdown">カウントダウン</string>
+    <string name="kisisel_w_note">メモ</string>
+    <string name="kisisel_w_battery">電池</string>
+</resources>

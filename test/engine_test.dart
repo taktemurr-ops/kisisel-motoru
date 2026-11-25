@@ -3,6 +3,9 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kisisel_motoru/kisisel_motoru.dart';
+import 'package:kisisel_motoru/src/platform/native.dart';
+import 'package:kisisel_motoru/src/tools/widgets_pack.dart' show kWidgetTypes;
+import 'package:kisisel_motoru/src/tx.dart';
 import 'package:studio_core/apps/apps.dart';
 import 'package:studio_core/app/services/ads.dart';
 import 'package:studio_core/app/services/purchases.dart';
@@ -19,6 +22,20 @@ void main() {
       expect(kisiselCategories.any((c) => c.id == t.category), isTrue, reason: t.id);
     }
     expect(kisiselHubTitle.length, 33);
+  });
+
+  test('Android yerel özellikleri: 33 dilde etiketler, widget sağlayıcıları', () {
+    for (final k in ['set_live_wallpaper', 'add_home', 'screensaver_settings', 'wall_note_ios',
+        'wall_note_android', 'widget_note_android', 'clock_note_android']) {
+      final v = kKisL[k];
+      expect(v, isNotNull, reason: k);
+      expect(v!.length, 33, reason: k);
+      expect(v.every((x) => x.trim().isNotEmpty), isTrue, reason: k);
+    }
+    // "Bu sürümde yok" bildirimi Android notlarında kalmamalı.
+    expect(kKisL['wall_note_android']![0].contains('bu sürümde yok'), isFalse);
+    expect(kKisL['widget_note_android']![1].contains('in this version'), isFalse);
+    expect(kWidgetProviders.keys.toSet(), kWidgetTypes.toSet());
   });
 
   test('sentez: geçerli WAV başlığı ve uzunluk', () {

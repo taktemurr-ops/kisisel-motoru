@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">Kertas Dinding Hidup</string>
+    <string name="kisisel_wallpaper_desc">Adegan animasi asli dilukis dengan kod</string>
+    <string name="kisisel_dream_label">Jam Pengecasan (Penyelamat Skrin)</string>
+    <string name="kisisel_w_clock">Jam</string>
+    <string name="kisisel_w_date">Tarikh</string>
+    <string name="kisisel_w_countdown">Kiraan detik</string>
+    <string name="kisisel_w_note">Nota</string>
+    <string name="kisisel_w_battery">Bateri</string>
+</resources>

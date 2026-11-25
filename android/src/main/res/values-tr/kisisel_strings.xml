@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">Canlı Duvar Kağıdı</string>
+    <string name="kisisel_wallpaper_desc">Kodla çizilen özgün hareketli sahneler</string>
+    <string name="kisisel_dream_label">Şarj Saati (Ekran Koruyucu)</string>
+    <string name="kisisel_w_clock">Saat</string>
+    <string name="kisisel_w_date">Tarih</string>
+    <string name="kisisel_w_countdown">Geri sayım</string>
+    <string name="kisisel_w_note">Not</string>
+    <string name="kisisel_w_battery">Pil</string>
+</resources>

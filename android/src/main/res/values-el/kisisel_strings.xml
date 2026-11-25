@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">Ζωντανές ταπετσαρίες</string>
+    <string name="kisisel_wallpaper_desc">Πρωτότυπες κινούμενες σκηνές σχεδιασμένες με κώδικα</string>
+    <string name="kisisel_dream_label">Ρολόι φόρτισης (προφύλαξη οθόνης)</string>
+    <string name="kisisel_w_clock">Ρολόι</string>
+    <string name="kisisel_w_date">Ημερομηνία</string>
+    <string name="kisisel_w_countdown">Αντίστροφη μέτρηση</string>
+    <string name="kisisel_w_note">Σημείωση</string>
+    <string name="kisisel_w_battery">Μπαταρία</string>
+</resources>

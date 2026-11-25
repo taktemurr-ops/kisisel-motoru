@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">Imagini de fundal animate</string>
+    <string name="kisisel_wallpaper_desc">Scene animate originale desenate prin cod</string>
+    <string name="kisisel_dream_label">Ceas de încărcare (screensaver)</string>
+    <string name="kisisel_w_clock">Ceas</string>
+    <string name="kisisel_w_date">Dată</string>
+    <string name="kisisel_w_countdown">Numărătoare inversă</string>
+    <string name="kisisel_w_note">Notiță</string>
+    <string name="kisisel_w_battery">Baterie</string>
+</resources>

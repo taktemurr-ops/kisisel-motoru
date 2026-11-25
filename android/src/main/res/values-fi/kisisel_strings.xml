@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">Elävät taustakuvat</string>
+    <string name="kisisel_wallpaper_desc">Alkuperäisiä koodilla piirrettyjä animaatioita</string>
+    <string name="kisisel_dream_label">Latauskello (näytönsäästäjä)</string>
+    <string name="kisisel_w_clock">Kello</string>
+    <string name="kisisel_w_date">Päivämäärä</string>
+    <string name="kisisel_w_countdown">Lähtölaskenta</string>
+    <string name="kisisel_w_note">Muistiinpano</string>
+    <string name="kisisel_w_battery">Akku</string>
+</resources>

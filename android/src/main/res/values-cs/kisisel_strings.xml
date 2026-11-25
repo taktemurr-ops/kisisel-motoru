@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">Živé tapety</string>
+    <string name="kisisel_wallpaper_desc">Originální animované scény kreslené kódem</string>
+    <string name="kisisel_dream_label">Hodiny při nabíjení (spořič)</string>
+    <string name="kisisel_w_clock">Hodiny</string>
+    <string name="kisisel_w_date">Datum</string>
+    <string name="kisisel_w_countdown">Odpočet</string>
+    <string name="kisisel_w_note">Poznámka</string>
+    <string name="kisisel_w_battery">Baterie</string>
+</resources>

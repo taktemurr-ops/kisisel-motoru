@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">लाइव वॉलपेपर</string>
+    <string name="kisisel_wallpaper_desc">कोड से बने मौलिक चलते दृश्य</string>
+    <string name="kisisel_dream_label">चार्जिंग घड़ी (स्क्रीनसेवर)</string>
+    <string name="kisisel_w_clock">घड़ी</string>
+    <string name="kisisel_w_date">तारीख</string>
+    <string name="kisisel_w_countdown">उलटी गिनती</string>
+    <string name="kisisel_w_note">नोट</string>
+    <string name="kisisel_w_battery">बैटरी</string>
+</resources>

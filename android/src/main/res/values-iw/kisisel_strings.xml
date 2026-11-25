@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">טפטים חיים</string>
+    <string name="kisisel_wallpaper_desc">סצנות מונפשות מקוריות שצוירו בקוד</string>
+    <string name="kisisel_dream_label">שעון טעינה (שומר מסך)</string>
+    <string name="kisisel_w_clock">שעון</string>
+    <string name="kisisel_w_date">תאריך</string>
+    <string name="kisisel_w_countdown">ספירה לאחור</string>
+    <string name="kisisel_w_note">הערה</string>
+    <string name="kisisel_w_battery">סוללה</string>
+</resources>

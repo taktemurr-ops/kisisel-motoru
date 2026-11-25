@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Üretildi: proto/apps/kisisel/mknative_res.py -->
+<resources>
+    <string name="kisisel_wallpaper_label">动态壁纸</string>
+    <string name="kisisel_wallpaper_desc">代码绘制的原创动态场景</string>
+    <string name="kisisel_dream_label">充电时钟 (屏保)</string>
+    <string name="kisisel_w_clock">时钟</string>
+    <string name="kisisel_w_date">日期</string>
+    <string name="kisisel_w_countdown">倒计时</string>
+    <string name="kisisel_w_note">便签</string>
+    <string name="kisisel_w_battery">电量</string>
+</resources>

@@ -1,0 +1,57 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Kişiselleştirme yerel bileşenleri. Hepsi varsayılan olarak kapalıdır
+         (enabled=false); kullanıcı ilgili aracı açınca uygulama tarafından
+         etkinleştirilir. Ek izin istenmez. -->
+    <uses-feature android:name="android.software.live_wallpaper" android:required="false" />
+    <uses-feature android:name="android.software.app_widgets" android:required="false" />
+
+    <application>
+        <!-- Canlı duvar kağıdı -->
+        <service
+            android:name="com.gamestudio100.kisisel_motoru.SceneWallpaperService"
+            android:label="@string/kisisel_wallpaper_label"
+            android:enabled="false"
+            android:exported="true"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+            <meta-data android:name="android.service.wallpaper" android:resource="@xml/kisisel_wallpaper" />
+        </service>
+
+        <!-- Ekran koruyucu saat (Daydream) -->
+        <service
+            android:name="com.gamestudio100.kisisel_motoru.ClockDreamService"
+            android:label="@string/kisisel_dream_label"
+            android:enabled="false"
+            android:exported="true"
+            android:permission="android.permission.BIND_DREAM_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.dreams.DreamService" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <!-- Ana ekran widget'ları -->
+        <receiver android:name="com.gamestudio100.kisisel_motoru.ClockWidget" android:label="@string/kisisel_w_clock" android:enabled="false" android:exported="true">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/kisisel_widget_clock" />
+        </receiver>
+        <receiver android:name="com.gamestudio100.kisisel_motoru.DateWidget" android:label="@string/kisisel_w_date" android:enabled="false" android:exported="true">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/kisisel_widget_date" />
+        </receiver>
+        <receiver android:name="com.gamestudio100.kisisel_motoru.CountdownWidget" android:label="@string/kisisel_w_countdown" android:enabled="false" android:exported="true">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/kisisel_widget_countdown" />
+        </receiver>
+        <receiver android:name="com.gamestudio100.kisisel_motoru.NoteWidget" android:label="@string/kisisel_w_note" android:enabled="false" android:exported="true">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/kisisel_widget_note" />
+        </receiver>
+        <receiver android:name="com.gamestudio100.kisisel_motoru.BatteryWidget" android:label="@string/kisisel_w_battery" android:enabled="false" android:exported="true">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/kisisel_widget_battery" />
+        </receiver>
+    </application>
+</manifest>
