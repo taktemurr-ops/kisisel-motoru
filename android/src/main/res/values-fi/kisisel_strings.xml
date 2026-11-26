@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Latauskello (näytönsäästäjä)</string>
     <string name="kisisel_charge_label">Latausanimaatio</string>
     <string name="kisisel_edge_label">Reunavalaistus</string>
+    <string name="kisisel_island_label">Ilmoitussaari</string>
+    <string name="kisisel_aod_label">Aina päällä -näyttö</string>
+    <string name="kisisel_call_label">Salama saapuvissa puheluissa</string>
     <string name="kisisel_w_clock">Kello</string>
     <string name="kisisel_w_date">Päivämäärä</string>
     <string name="kisisel_w_countdown">Lähtölaskenta</string>

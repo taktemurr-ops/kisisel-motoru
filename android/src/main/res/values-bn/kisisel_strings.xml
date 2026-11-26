@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">চার্জিং ঘড়ি (স্ক্রিনসেভার)</string>
     <string name="kisisel_charge_label">চার্জিং অ্যানিমেশন</string>
     <string name="kisisel_edge_label">এজ লাইটিং</string>
+    <string name="kisisel_island_label">নোটিফিকেশন আইল্যান্ড</string>
+    <string name="kisisel_aod_label">অলওয়েজ-অন ডিসপ্লে</string>
+    <string name="kisisel_call_label">ইনকামিং কলে ফ্ল্যাশ</string>
     <string name="kisisel_w_clock">ঘড়ি</string>
     <string name="kisisel_w_date">তারিখ</string>
     <string name="kisisel_w_countdown">কাউন্টডাউন</string>

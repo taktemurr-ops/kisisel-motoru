@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Годинник під час заряджання (заставка)</string>
     <string name="kisisel_charge_label">Анімація заряджання</string>
     <string name="kisisel_edge_label">Підсвічування країв</string>
+    <string name="kisisel_island_label">Острів сповіщень</string>
+    <string name="kisisel_aod_label">Завжди увімкнений екран</string>
+    <string name="kisisel_call_label">Спалах під час вхідного дзвінка</string>
     <string name="kisisel_w_clock">Годинник</string>
     <string name="kisisel_w_date">Дата</string>
     <string name="kisisel_w_countdown">Зворотний відлік</string>

@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Töltési óra (képernyővédő)</string>
     <string name="kisisel_charge_label">Töltési animáció</string>
     <string name="kisisel_edge_label">Élvilágítás</string>
+    <string name="kisisel_island_label">Értesítési sziget</string>
+    <string name="kisisel_aod_label">Mindig bekapcsolt kijelző</string>
+    <string name="kisisel_call_label">Vaku bejövő hívásnál</string>
     <string name="kisisel_w_clock">Óra</string>
     <string name="kisisel_w_date">Dátum</string>
     <string name="kisisel_w_countdown">Visszaszámláló</string>

@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Ladeklokke (skjermsparer)</string>
     <string name="kisisel_charge_label">Ladeanimasjon</string>
     <string name="kisisel_edge_label">Kantbelysning</string>
+    <string name="kisisel_island_label">Varslingsøy</string>
+    <string name="kisisel_aod_label">Alltid på-skjerm</string>
+    <string name="kisisel_call_label">Blits ved innkommende anrop</string>
     <string name="kisisel_w_clock">Klokke</string>
     <string name="kisisel_w_date">Dato</string>
     <string name="kisisel_w_countdown">Nedtelling</string>

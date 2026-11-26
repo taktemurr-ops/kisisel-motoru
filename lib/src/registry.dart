@@ -1,14 +1,18 @@
-/// Üretilmiş dosya (proto/apps/kisisel/mkengine.py). Kişiselleştirme'nin 9 aracı.
+/// Üretilmiş dosya (proto/apps/kisisel/mkengine.py). Kişiselleştirme'nin 13 aracı.
 library;
 
 import 'package:flutter/material.dart';
 import 'package:studio_core/apps/apps.dart';
 
+import 'tools/aod.dart';
+import 'tools/call_flash.dart';
 import 'tools/charge_anim.dart';
 import 'tools/clock.dart';
 import 'tools/edge_light.dart';
 import 'tools/fancy_text.dart';
+import 'tools/home_icons.dart';
 import 'tools/icons.dart';
+import 'tools/island.dart';
 import 'tools/palette.dart';
 import 'tools/sounds.dart';
 import 'tools/wallpaper.dart';
@@ -113,6 +117,46 @@ final List<AppTool> kisiselTools = [
     category: 'screen',
     keywords: const ['charging', 'battery', 'animation', 'screensaver'],
     builder: (context, t) => ChargeAnimTool(t),
+  ),
+  AppTool(
+    id: 'uyg-dinamik-ada',
+    title: kKisTitle['uyg-dinamik-ada']!,
+    tagline: kKisTag['uyg-dinamik-ada']!,
+    icon: Icons.smart_button_rounded,
+    color: const Color(0xFF90CDF4),
+    category: 'screen',
+    keywords: const ['island', 'notch', 'notification', 'pill', 'ada'],
+    builder: (context, t) => IslandTool(t),
+  ),
+  AppTool(
+    id: 'uyg-her-zaman-acik-ekran',
+    title: kKisTitle['uyg-her-zaman-acik-ekran']!,
+    tagline: kKisTag['uyg-her-zaman-acik-ekran']!,
+    icon: Icons.access_time_filled_rounded,
+    color: const Color(0xFFE2E8F0),
+    category: 'screen',
+    keywords: const ['aod', 'always on', 'clock', 'oled', 'ekran'],
+    builder: (context, t) => AodTool(t),
+  ),
+  AppTool(
+    id: 'uyg-arama-flasi',
+    title: kKisTitle['uyg-arama-flasi']!,
+    tagline: kKisTag['uyg-arama-flasi']!,
+    icon: Icons.flashlight_on_rounded,
+    color: const Color(0xFFFBD38D),
+    category: 'screen',
+    keywords: const ['flash', 'call', 'torch', 'ring', 'flaş', 'arama'],
+    builder: (context, t) => CallFlashTool(t),
+  ),
+  AppTool(
+    id: 'uyg-estetik-ana-ekran',
+    title: kKisTitle['uyg-estetik-ana-ekran']!,
+    tagline: kKisTag['uyg-estetik-ana-ekran']!,
+    icon: Icons.dashboard_customize_rounded,
+    color: const Color(0xFFFBB6CE),
+    category: 'style',
+    keywords: const ['aesthetic', 'icon', 'shortcut', 'home', 'theme', 'kısayol'],
+    builder: (context, t) => HomeIconsTool(t),
   ),
 ];
 

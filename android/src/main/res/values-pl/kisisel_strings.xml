@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Zegar ładowania (wygaszacz)</string>
     <string name="kisisel_charge_label">Animacja ładowania</string>
     <string name="kisisel_edge_label">Podświetlenie krawędzi</string>
+    <string name="kisisel_island_label">Wyspa powiadomień</string>
+    <string name="kisisel_aod_label">Zawsze włączony ekran</string>
+    <string name="kisisel_call_label">Błysk przy połączeniach przychodzących</string>
     <string name="kisisel_w_clock">Zegar</string>
     <string name="kisisel_w_date">Data</string>
     <string name="kisisel_w_countdown">Odliczanie</string>

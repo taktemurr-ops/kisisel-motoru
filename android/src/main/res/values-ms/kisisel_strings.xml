@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Jam Pengecasan (Penyelamat Skrin)</string>
     <string name="kisisel_charge_label">Animasi Pengecasan</string>
     <string name="kisisel_edge_label">Lampu Tepi Skrin</string>
+    <string name="kisisel_island_label">Pulau Pemberitahuan</string>
+    <string name="kisisel_aod_label">Paparan Sentiasa Hidup</string>
+    <string name="kisisel_call_label">Denyar untuk Panggilan Masuk</string>
     <string name="kisisel_w_clock">Jam</string>
     <string name="kisisel_w_date">Tarikh</string>
     <string name="kisisel_w_countdown">Kiraan detik</string>

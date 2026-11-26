@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Ceas de încărcare (screensaver)</string>
     <string name="kisisel_charge_label">Animație de încărcare</string>
     <string name="kisisel_edge_label">Iluminarea marginilor</string>
+    <string name="kisisel_island_label">Insula de notificări</string>
+    <string name="kisisel_aod_label">Ecran mereu activ</string>
+    <string name="kisisel_call_label">Bliț la apeluri primite</string>
     <string name="kisisel_w_clock">Ceas</string>
     <string name="kisisel_w_date">Dată</string>
     <string name="kisisel_w_countdown">Numărătoare inversă</string>

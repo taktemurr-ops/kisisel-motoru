@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">ساعت شارژ (محافظ صفحه)</string>
     <string name="kisisel_charge_label">انیمیشن شارژ</string>
     <string name="kisisel_edge_label">نور لبه‌ها</string>
+    <string name="kisisel_island_label">جزیره اعلان</string>
+    <string name="kisisel_aod_label">نمایشگر همیشه روشن</string>
+    <string name="kisisel_call_label">فلش هنگام تماس ورودی</string>
     <string name="kisisel_w_clock">ساعت</string>
     <string name="kisisel_w_date">تاریخ</string>
     <string name="kisisel_w_countdown">شمارش معکوس</string>

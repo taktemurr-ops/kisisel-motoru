@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Jam Pengisian (Screensaver)</string>
     <string name="kisisel_charge_label">Animasi Pengisian Daya</string>
     <string name="kisisel_edge_label">Lampu Tepi Layar</string>
+    <string name="kisisel_island_label">Pulau Notifikasi</string>
+    <string name="kisisel_aod_label">Layar Selalu Aktif</string>
+    <string name="kisisel_call_label">Flash Saat Panggilan Masuk</string>
     <string name="kisisel_w_clock">Jam</string>
     <string name="kisisel_w_date">Tanggal</string>
     <string name="kisisel_w_countdown">Hitung mundur</string>

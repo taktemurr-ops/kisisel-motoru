@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">चार्जिंग घड़ी (स्क्रीनसेवर)</string>
     <string name="kisisel_charge_label">चार्जिंग एनिमेशन</string>
     <string name="kisisel_edge_label">एज लाइटिंग</string>
+    <string name="kisisel_island_label">नोटिफ़िकेशन आइलैंड</string>
+    <string name="kisisel_aod_label">ऑलवेज़-ऑन डिस्प्ले</string>
+    <string name="kisisel_call_label">इनकमिंग कॉल पर फ़्लैश</string>
     <string name="kisisel_w_clock">घड़ी</string>
     <string name="kisisel_w_date">तारीख</string>
     <string name="kisisel_w_countdown">उलटी गिनती</string>

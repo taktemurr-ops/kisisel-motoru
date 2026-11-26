@@ -1,5 +1,5 @@
 name: kisisel_motoru
-description: "Kişiselleştirme motoru: 9 çevrimdışı araç (duvar kağıdı, widget, ikon, zil sesi, şarj saati, renk paleti, şık yazı, kenar ışığı, şarj animasyonu)."
+description: "Kişiselleştirme motoru: 13 araç (duvar kağıdı, widget, ikon, zil sesi, şarj saati, renk paleti, şık yazı, kenar ışığı, şarj animasyonu, bildirim adası, her zaman açık ekran, arama flaşı, estetik ana ekran)."
 publish_to: none
 version: 1.0.0
 

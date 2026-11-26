@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Opladningsur (pauseskærm)</string>
     <string name="kisisel_charge_label">Opladningsanimation</string>
     <string name="kisisel_edge_label">Kantbelysning</string>
+    <string name="kisisel_island_label">Notifikationsø</string>
+    <string name="kisisel_aod_label">Altid tændt skærm</string>
+    <string name="kisisel_call_label">Blitz ved indgående opkald</string>
     <string name="kisisel_w_clock">Ur</string>
     <string name="kisisel_w_date">Dato</string>
     <string name="kisisel_w_countdown">Nedtælling</string>

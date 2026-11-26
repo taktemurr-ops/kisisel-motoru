@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Şarj Saati (Ekran Koruyucu)</string>
     <string name="kisisel_charge_label">Şarj Animasyonu</string>
     <string name="kisisel_edge_label">Kenar Işıklandırma</string>
+    <string name="kisisel_island_label">Dinamik Bildirim Adası</string>
+    <string name="kisisel_aod_label">Her Zaman Açık Ekran</string>
+    <string name="kisisel_call_label">Gelen Aramada Flaş</string>
     <string name="kisisel_w_clock">Saat</string>
     <string name="kisisel_w_date">Tarih</string>
     <string name="kisisel_w_countdown">Geri sayım</string>

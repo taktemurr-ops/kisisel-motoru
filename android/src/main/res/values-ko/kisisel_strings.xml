@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">충전 시계 (화면 보호기)</string>
     <string name="kisisel_charge_label">충전 애니메이션</string>
     <string name="kisisel_edge_label">엣지 라이팅</string>
+    <string name="kisisel_island_label">알림 아일랜드</string>
+    <string name="kisisel_aod_label">상시 표시 화면</string>
+    <string name="kisisel_call_label">수신 전화 플래시</string>
     <string name="kisisel_w_clock">시계</string>
     <string name="kisisel_w_date">날짜</string>
     <string name="kisisel_w_countdown">카운트다운</string>

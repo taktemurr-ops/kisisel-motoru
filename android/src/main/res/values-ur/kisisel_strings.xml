@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">چارجنگ گھڑی (اسکرین سیور)</string>
     <string name="kisisel_charge_label">چارجنگ اینیمیشن</string>
     <string name="kisisel_edge_label">کناروں کی روشنی</string>
+    <string name="kisisel_island_label">نوٹیفکیشن آئی لینڈ</string>
+    <string name="kisisel_aod_label">ہمیشہ آن ڈسپلے</string>
+    <string name="kisisel_call_label">آنے والی کال پر فلیش</string>
     <string name="kisisel_w_clock">گھڑی</string>
     <string name="kisisel_w_date">تاریخ</string>
     <string name="kisisel_w_countdown">الٹی گنتی</string>

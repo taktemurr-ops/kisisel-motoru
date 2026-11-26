@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Relógio de carregamento (descanso de tela)</string>
     <string name="kisisel_charge_label">Animação de carregamento</string>
     <string name="kisisel_edge_label">Iluminação das bordas</string>
+    <string name="kisisel_island_label">Ilha de notificações</string>
+    <string name="kisisel_aod_label">Tela sempre ativa</string>
+    <string name="kisisel_call_label">Flash em chamadas recebidas</string>
     <string name="kisisel_w_clock">Relógio</string>
     <string name="kisisel_w_date">Data</string>
     <string name="kisisel_w_countdown">Contagem regressiva</string>

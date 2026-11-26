@@ -14,9 +14,9 @@ import 'package:studio_core/app/services/purchases.dart';
 import 'package:studio_core/core/save_store.dart';
 
 void main() {
-  test('9 araç, 33 dilde ad ve açıklama', () {
-    expect(kisiselTools.length, 9);
-    expect(kisiselTools.map((t) => t.id).toSet().length, 9);
+  test('13 araç, 33 dilde ad ve açıklama', () {
+    expect(kisiselTools.length, 13);
+    expect(kisiselTools.map((t) => t.id).toSet().length, 13);
     for (final t in kisiselTools) {
       expect(t.title.length, 33, reason: t.id);
       expect(t.tagline.length, 33, reason: t.id);
@@ -229,7 +229,8 @@ void main() {
 
   // Şarj animasyonu testte açılmaz: pil eklentisi (battery_plus) test ortamında yok.
   for (final t in ['uyg-canli-duvar-kagidi', 'uyg-widget-paketi', 'uyg-ozgun-ikon-paketi', 'uyg-kilit-ekrani-saati',
-      'uyg-renk-paleti-uretici', 'uyg-sik-yazi-uretici', 'uyg-kenar-isiklandirma']) {
+      'uyg-renk-paleti-uretici', 'uyg-sik-yazi-uretici', 'uyg-kenar-isiklandirma', 'uyg-dinamik-ada',
+      'uyg-her-zaman-acik-ekran', 'uyg-arama-flasi', 'uyg-estetik-ana-ekran']) {
     testWidgets('araç ekranı açılır: $t', (tester) async {
       final s = AppServices(hubId: 'm', backend: MemoryBackend(), ads: NoAdsService(), purchases: NoPurchaseService());
       final tool = kisiselTool(t);

@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">充電クロック (スクリーンセーバー)</string>
     <string name="kisisel_charge_label">充電アニメーション</string>
     <string name="kisisel_edge_label">エッジライティング</string>
+    <string name="kisisel_island_label">通知アイランド</string>
+    <string name="kisisel_aod_label">常時表示ディスプレイ</string>
+    <string name="kisisel_call_label">着信時フラッシュ</string>
     <string name="kisisel_w_clock">時計</string>
     <string name="kisisel_w_date">日付</string>
     <string name="kisisel_w_countdown">カウントダウン</string>

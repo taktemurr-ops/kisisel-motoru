@@ -327,3 +327,64 @@ class PaletteRow extends StatelessWidget {
     ]);
   }
 }
+
+// ---------------------------------------------------------- ayar satırları
+
+/// Etiketli kaydırıcı: solda ad, ortada kaydırıcı, sağda değer.
+class SliderRow extends StatelessWidget {
+  final String label;
+  final double value, min, max;
+  final String unit;
+  final int? divisions;
+  final ValueChanged<double> onChanged;
+  const SliderRow({
+    super.key,
+    required this.label,
+    required this.value,
+    required this.min,
+    required this.max,
+    required this.onChanged,
+    this.unit = '',
+    this.divisions,
+  });
+
+  @override
+  Widget build(BuildContext context) => Row(children: [
+        Expanded(child: Text(label)),
+        Expanded(
+          flex: 2,
+          child: Slider(value: value.clamp(min, max).toDouble(), min: min, max: max, divisions: divisions, onChanged: onChanged),
+        ),
+        SizedBox(width: 56, child: Text('${value.round()}$unit', textAlign: TextAlign.end)),
+      ]);
+}
+
+/// Sistem izni satırı: verildiyse onay işareti, değilse "İzin ver" düğmesi.
+class PermRow extends StatelessWidget {
+  final ToolContext t;
+  final String label;
+  final bool ok;
+  final Future<bool> Function() open;
+  const PermRow({super.key, required this.t, required this.label, required this.ok, required this.open});
+
+  @override
+  Widget build(BuildContext context) => ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: Icon(ok ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
+            color: ok ? Colors.greenAccent : Colors.white54),
+        title: Text(label),
+        trailing: ok
+            ? null
+            : TextButton(
+                onPressed: () async {
+                  final messenger = ScaffoldMessenger.maybeOf(context);
+                  if (!await open()) messenger?.showSnackBar(SnackBar(content: Text(t.tx('not_available'))));
+                },
+                child: Text(L(t, 'allow')),
+              ),
+      );
+}
+
+/// Açma/kapama satırı.
+Widget switchRow(String label, bool value, ValueChanged<bool>? onChanged) =>
+    SwitchListTile(contentPadding: EdgeInsets.zero, title: Text(label), value: value, onChanged: onChanged);

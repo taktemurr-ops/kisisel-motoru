@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Horloge de charge (économiseur)</string>
     <string name="kisisel_charge_label">Animation de charge</string>
     <string name="kisisel_edge_label">Éclairage des bords</string>
+    <string name="kisisel_island_label">Île de notifications</string>
+    <string name="kisisel_aod_label">Écran toujours allumé</string>
+    <string name="kisisel_call_label">Flash pour les appels entrants</string>
     <string name="kisisel_w_clock">Horloge</string>
     <string name="kisisel_w_date">Date</string>
     <string name="kisisel_w_countdown">Compte à rebours</string>

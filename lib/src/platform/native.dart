@@ -9,12 +9,14 @@
 /// "HomeWidgetPreferences"; iOS'ta App Group) ve widget'lar yenilenir.
 library;
 
+import 'dart:typed_data';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:home_widget/home_widget.dart';
 
 /// Yerel bileşen grupları.
-enum NativeFeature { wallpaper, widgets, dream, chargeDream, edge }
+enum NativeFeature { wallpaper, widgets, dream, chargeDream, edge, island, call, aod }
 
 /// Android widget sağlayıcı sınıfları (tam adlar; manifestle aynı).
 const String kWidgetPackage = 'com.gamestudio100.kisisel_motoru';
@@ -30,6 +32,14 @@ const Map<String, String> kWidgetProviders = {
 /// (merkez uygulamada ios_widget/README.md: Xcode'da hedef eklenince kullanılır).
 const String kIosAppGroup = 'group.com.gamestudio100.kisisel';
 const String kIosWidgetKind = 'KisiselWidgets';
+
+/// Başlatıcıda görünen bir uygulama.
+class LauncherApp {
+  final String label;
+  final String package;
+  final int category;
+  const LauncherApp({required this.label, required this.package, this.category = -1});
+}
 
 class KisiselNative {
   KisiselNative._();
@@ -66,8 +76,8 @@ class KisiselNative {
 
   /// Sistem ekran koruyucu ayarlarını açar. Açılamazsa false.
   /// [charge] true ise şarj animasyonu, değilse saat ekran koruyucusu etkinleştirilir.
-  static Future<bool> openDreamSettings({bool charge = false}) async =>
-      await _call<bool>('openDreamSettings', {'charge': charge}) ?? false;
+  static Future<bool> openDreamSettings({bool charge = false, bool aod = false}) async =>
+      await _call<bool>('openDreamSettings', {'charge': charge, 'aod': aod}) ?? false;
 
   /// Şarj animasyonu ekran koruyucusunun ayarları (biçim, renkler…).
   static Future<void> setCharge(Map<String, Object?> prefs) => _call<void>('setCharge', prefs);
@@ -90,6 +100,55 @@ class KisiselNative {
 
   /// Kenar ışığını hemen bir kez gösterir (izin varsa). Gösterildiyse true.
   static Future<bool> testEdge() async => await _call<bool>('testEdge') ?? false;
+
+  /// Bir özelliğin bildirim dinleyicisi (kenar, ada, arama) izni, kaplama
+  /// izni ve fener var mı. Android dışında hepsi false.
+  static Future<({bool listener, bool overlay, bool torch})> featureStatus(NativeFeature f) async {
+    final m = await _call<Map<Object?, Object?>>('featureStatus', {'feature': f.name});
+    return (listener: m?['listener'] == true, overlay: m?['overlay'] == true, torch: m?['torch'] == true);
+  }
+
+  /// Bu özelliğin dinleyicisi için sistem "Bildirim erişimi" sayfasını açar.
+  static Future<bool> openListenerAccess(NativeFeature f) async =>
+      await _call<bool>('openNotificationAccess', {'feature': f.name}) ?? false;
+
+  /// Ada, arama flaşı ya da AOD ayarlarını yerel servise yazar.
+  static Future<void> setPrefs(NativeFeature f, Map<String, Object?> prefs) =>
+      _call<void>('setPrefs', {'key': f.name, 'prefs': prefs});
+
+  /// Adayı örnek bir bildirimle hemen gösterir (kaplama izni varsa).
+  static Future<bool> testIsland(String sample) async => await _call<bool>('testIsland', {'text': sample}) ?? false;
+
+  /// Arama flaşını birkaç saniye dener.
+  static Future<bool> testFlash(int seconds) async => await _call<bool>('testFlash', {'seconds': seconds}) ?? false;
+
+  /// Sonraki alarmın zamanı (izin gerekmez); yoksa null.
+  static Future<DateTime?> nextAlarm() async {
+    final ms = await _call<int>('nextAlarm');
+    return ms == null ? null : DateTime.fromMillisecondsSinceEpoch(ms);
+  }
+
+  /// Başlatıcıdaki uygulamalar (ad, paket, kategori). Android dışında boş.
+  static Future<List<LauncherApp>> listApps() async {
+    final list = await _call<List<Object?>>('listApps');
+    if (list == null) return const [];
+    return [
+      for (final e in list)
+        if (e is Map)
+          LauncherApp(
+            label: '${e['label'] ?? ''}',
+            package: '${e['package'] ?? ''}',
+            category: (e['category'] as num?)?.toInt() ?? -1,
+          ),
+    ];
+  }
+
+  /// Başlatıcı kısayol sabitlemeyi destekliyor mu (Android 8+).
+  static Future<bool> canPinShortcuts() async => await _call<bool>('canPinShortcuts') ?? false;
+
+  /// Seçilen uygulamayı açan özel simgeli kısayol isteği gönderir.
+  static Future<bool> pinShortcut(String package, String label, Uint8List png) async =>
+      await _call<bool>('pinShortcut', {'package': package, 'label': label, 'png': png}) ?? false;
 
   /// Başlatıcı "ana ekrana sabitle" isteğini destekliyor mu (Android 8+).
   static Future<bool> canPinWidgets() async => await _call<bool>('canPinWidgets') ?? false;

@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Часы при зарядке (заставка)</string>
     <string name="kisisel_charge_label">Анимация зарядки</string>
     <string name="kisisel_edge_label">Подсветка краёв</string>
+    <string name="kisisel_island_label">Остров уведомлений</string>
+    <string name="kisisel_aod_label">Всегда включённый экран</string>
+    <string name="kisisel_call_label">Вспышка при входящем звонке</string>
     <string name="kisisel_w_clock">Часы</string>
     <string name="kisisel_w_date">Дата</string>
     <string name="kisisel_w_countdown">Обратный отсчёт</string>

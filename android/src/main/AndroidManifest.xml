@@ -1,12 +1,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Kişiselleştirme yerel bileşenleri. Hepsi varsayılan olarak kapalıdır
          (enabled=false); kullanıcı ilgili aracı açınca uygulama tarafından
-         etkinleştirilir. Tek ek izin kenar ışıklandırma içindir:
-         SYSTEM_ALERT_WINDOW ("diğer uygulamaların üzerinde göster"); kullanıcı
-         bunu ve bildirim erişimini sistem ayarlarından kendisi açar. -->
+         etkinleştirilir. Tek ek izin SYSTEM_ALERT_WINDOW'dur ("diğer
+         uygulamaların üzerinde göster": kenar ışığı, bildirim adası, arama
+         flaşının ekran kenarı); kullanıcı bunu ve bildirim erişimini sistem
+         ayarlarından kendisi açar.
+         En az yetki (Play politikası): arama flaşı READ_PHONE_STATE,
+         READ_CALL_LOG, READ_CONTACTS, ANSWER_PHONE_CALLS ya da CAMERA İSTEMEZ
+         (gelen arama, sistemin arama bildiriminden anlaşılır; fener
+         CameraManager.setTorchMode ile izinsiz yakılır). Estetik ana ekran
+         QUERY_ALL_PACKAGES İSTEMEZ (aşağıdaki LAUNCHER <queries> yeterli);
+         kısayol için INSTALL_SHORTCUT gerekmez (requestPinShortcut). Erişilebilirlik
+         hizmeti ve ön plan hizmeti yoktur. -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-feature android:name="android.software.live_wallpaper" android:required="false" />
     <uses-feature android:name="android.software.app_widgets" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
 
     <application>
         <!-- Canlı duvar kağıdı -->
@@ -57,6 +73,43 @@
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <!-- Dinamik bildirim adası: bildirim gelince simge ve uygulama adı -->
+        <service
+            android:name="com.gamestudio100.kisisel_motoru.IslandNotificationService"
+            android:label="@string/kisisel_island_label"
+            android:enabled="false"
+            android:exported="true"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <!-- Gelen aramada flaş: yalnız "arama bildirimi çalıyor" bilgisi -->
+        <service
+            android:name="com.gamestudio100.kisisel_motoru.CallFlashService"
+            android:label="@string/kisisel_call_label"
+            android:enabled="false"
+            android:exported="true"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <!-- Her zaman açık ekran (şarjda ekran koruyucu) -->
+        <service
+            android:name="com.gamestudio100.kisisel_motoru.AodDreamService"
+            android:label="@string/kisisel_aod_label"
+            android:enabled="false"
+            android:exported="true"
+            android:permission="android.permission.BIND_DREAM_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.dreams.DreamService" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
 

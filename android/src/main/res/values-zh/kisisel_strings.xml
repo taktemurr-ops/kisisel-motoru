@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">充电时钟 (屏保)</string>
     <string name="kisisel_charge_label">充电动画</string>
     <string name="kisisel_edge_label">边缘灯光</string>
+    <string name="kisisel_island_label">通知岛</string>
+    <string name="kisisel_aod_label">息屏显示</string>
+    <string name="kisisel_call_label">来电闪光</string>
     <string name="kisisel_w_clock">时钟</string>
     <string name="kisisel_w_date">日期</string>
     <string name="kisisel_w_countdown">倒计时</string>

@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">ساعة الشحن (شاشة توقف)</string>
     <string name="kisisel_charge_label">رسوم متحركة للشحن</string>
     <string name="kisisel_edge_label">إضاءة الحواف</string>
+    <string name="kisisel_island_label">جزيرة الإشعارات</string>
+    <string name="kisisel_aod_label">شاشة العرض الدائم</string>
+    <string name="kisisel_call_label">فلاش عند المكالمات الواردة</string>
     <string name="kisisel_w_clock">ساعة</string>
     <string name="kisisel_w_date">التاريخ</string>
     <string name="kisisel_w_countdown">عد تنازلي</string>

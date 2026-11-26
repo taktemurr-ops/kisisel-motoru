@@ -8,6 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
@@ -15,8 +21,13 @@ import android.provider.Settings;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
@@ -63,9 +74,20 @@ public class KisiselMotoruPlugin implements FlutterPlugin, MethodChannel.MethodC
 
     /** Kullanıcı bildirim erişimini bu uygulamanın dinleyicisine vermiş mi. */
     private boolean listenerGranted() {
+        return listenerGranted(EdgeNotificationService.class);
+    }
+
+    /** Özellikle ilgili bildirim dinleyicisi (kenar, ada, arama). */
+    private static Class<?> listenerClass(String feature) {
+        if ("island".equals(feature)) return IslandNotificationService.class;
+        if ("call".equals(feature)) return CallFlashService.class;
+        return EdgeNotificationService.class;
+    }
+
+    private boolean listenerGranted(Class<?> cls) {
         String flat = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
         if (flat == null || flat.isEmpty()) return false;
-        ComponentName me = new ComponentName(context, EdgeNotificationService.class);
+        ComponentName me = new ComponentName(context, cls);
         for (String part : flat.split(":")) {
             ComponentName cn = ComponentName.unflattenFromString(part);
             if (me.equals(cn)) return true;
@@ -84,6 +106,57 @@ public class KisiselMotoruPlugin implements FlutterPlugin, MethodChannel.MethodC
         }
     }
 
+    /**
+     * Başlatıcıda görünen uygulamalar (ad, paket, kategori). Android 11+ paket
+     * görünürlüğü manifestteki <queries> LAUNCHER sorgusuyla sağlanır;
+     * QUERY_ALL_PACKAGES İSTENMEZ (Play politikası). Liste cihazdan çıkmaz.
+     */
+    private List<Map<String, Object>> listApps() {
+        PackageManager pm = context.getPackageManager();
+        Intent i = new Intent(Intent.ACTION_MAIN);
+        i.addCategory(Intent.CATEGORY_LAUNCHER);
+        List<ResolveInfo> found = pm.queryIntentActivities(i, 0);
+        List<Map<String, Object>> out = new ArrayList<>();
+        Set<String> seen = new HashSet<>();
+        for (ResolveInfo ri : found) {
+            if (ri.activityInfo == null) continue;
+            String pkg = ri.activityInfo.packageName;
+            if (pkg == null || pkg.equals(context.getPackageName()) || !seen.add(pkg)) continue;
+            HashMap<String, Object> m = new HashMap<>();
+            m.put("label", String.valueOf(ri.loadLabel(pm)));
+            m.put("package", pkg);
+            int cat = -1;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && ri.activityInfo.applicationInfo != null) {
+                cat = ri.activityInfo.applicationInfo.category;
+            }
+            m.put("category", cat);
+            out.add(m);
+        }
+        Collections.sort(out, (a, b) -> String.valueOf(a.get("label")).compareToIgnoreCase(String.valueOf(b.get("label"))));
+        return out;
+    }
+
+    /** Seçilen uygulamayı açan, özel simgeli kısayolu sabitleme isteği (Android 8+). */
+    private boolean pinShortcut(String pkg, String label, byte[] png) {
+        if (pkg == null || png == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return false;
+        ShortcutManager sm = context.getSystemService(ShortcutManager.class);
+        if (sm == null || !sm.isRequestPinShortcutSupported()) return false;
+        Intent launch = context.getPackageManager().getLaunchIntentForPackage(pkg);
+        if (launch == null) return false;
+        launch.setAction(Intent.ACTION_MAIN);
+        launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Bitmap bmp = BitmapFactory.decodeByteArray(png, 0, png.length);
+        if (bmp == null) return false;
+        String name = label == null || label.trim().isEmpty() ? pkg : label.trim();
+        ShortcutInfo info = new ShortcutInfo.Builder(context, "estetik_" + pkg + "_" + System.currentTimeMillis())
+            .setShortLabel(name.length() > 24 ? name.substring(0, 24) : name)
+            .setLongLabel(name)
+            .setIcon(Icon.createWithBitmap(bmp))
+            .setIntent(launch)
+            .build();
+        return sm.requestPinShortcut(info, null);
+    }
+
     @Override
     public void onMethodCall(MethodCall call, MethodChannel.Result result) {
         try {
@@ -94,6 +167,9 @@ public class KisiselMotoruPlugin implements FlutterPlugin, MethodChannel.MethodC
                     else if ("dream".equals(f)) enableComponent(ClockDreamService.class);
                     else if ("chargeDream".equals(f)) enableComponent(ChargeDreamService.class);
                     else if ("edge".equals(f)) enableComponent(EdgeNotificationService.class);
+                    else if ("island".equals(f)) enableComponent(IslandNotificationService.class);
+                    else if ("call".equals(f)) enableComponent(CallFlashService.class);
+                    else if ("aod".equals(f)) enableComponent(AodDreamService.class);
                     else if ("widgets".equals(f)) for (Class<?> c : WIDGETS) enableComponent(c);
                     result.success(null);
                     break;
@@ -147,9 +223,72 @@ public class KisiselMotoruPlugin implements FlutterPlugin, MethodChannel.MethodC
                     break;
                 }
                 case "openNotificationAccess": {
-                    enableComponent(EdgeNotificationService.class);
-                    result.success(start(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
+                    Class<?> cls = listenerClass(call.argument("feature"));
+                    enableComponent(cls);
+                    boolean ok = false;
+                    if (Build.VERSION.SDK_INT >= 30) {
+                        // Android 11+: doğrudan bu dinleyicinin ayrıntı sayfası.
+                        Intent i = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_DETAIL_SETTINGS);
+                        i.putExtra(Settings.EXTRA_NOTIFICATION_LISTENER_COMPONENT_NAME,
+                            new ComponentName(context, cls).flattenToString());
+                        ok = start(i);
+                    }
+                    result.success(ok || start(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
                         || start(new Intent(Settings.ACTION_SETTINGS)));
+                    break;
+                }
+                case "featureStatus": {
+                    HashMap<String, Object> m = new HashMap<>();
+                    m.put("listener", listenerGranted(listenerClass(call.argument("feature"))));
+                    m.put("overlay", EdgeOverlay.canDraw(context));
+                    m.put("torch", CallFlasher.hasFlash(context));
+                    result.success(m);
+                    break;
+                }
+                case "setPrefs": {
+                    String key = call.argument("key");
+                    Map<?, ?> prefs = call.argument("prefs");
+                    if (key == null || !(key.equals("island") || key.equals("call") || key.equals("aod"))) {
+                        result.success(null);
+                        break;
+                    }
+                    JSONObject j = prefs == null ? new JSONObject() : new JSONObject(prefs);
+                    NativePrefs.get(context).edit().putString(key + "_json", j.toString()).apply();
+                    if ("island".equals(key)) IslandOverlay.refreshIdle(context);
+                    if ("call".equals(key) && !j.optBoolean("enabled", false)) CallFlasher.stop();
+                    result.success(null);
+                    break;
+                }
+                case "testIsland": {
+                    result.success(IslandOverlay.demo(context, call.argument("text")));
+                    break;
+                }
+                case "testFlash": {
+                    Number sec = call.argument("seconds");
+                    long ms = (long) (Math.max(1, Math.min(10, sec == null ? 3 : sec.doubleValue())) * 1000);
+                    result.success(CallFlasher.start(context, "test", ms, true));
+                    break;
+                }
+                case "nextAlarm": {
+                    long t = AodDreamService.nextAlarm(context);
+                    result.success(t > 0 ? t : null);
+                    break;
+                }
+                case "listApps": {
+                    result.success(listApps());
+                    break;
+                }
+                case "canPinShortcuts": {
+                    boolean ok = false;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        ShortcutManager sm = context.getSystemService(ShortcutManager.class);
+                        ok = sm != null && sm.isRequestPinShortcutSupported();
+                    }
+                    result.success(ok);
+                    break;
+                }
+                case "pinShortcut": {
+                    result.success(pinShortcut(call.argument("package"), call.argument("label"), call.argument("png")));
                     break;
                 }
                 case "openOverlaySettings": {
@@ -168,7 +307,9 @@ public class KisiselMotoruPlugin implements FlutterPlugin, MethodChannel.MethodC
                 }
                 case "openDreamSettings": {
                     Boolean chargeArg = call.argument("charge");
-                    enableComponent(Boolean.TRUE.equals(chargeArg) ? ChargeDreamService.class : ClockDreamService.class);
+                    Boolean aodArg = call.argument("aod");
+                    enableComponent(Boolean.TRUE.equals(aodArg) ? AodDreamService.class
+                        : Boolean.TRUE.equals(chargeArg) ? ChargeDreamService.class : ClockDreamService.class);
                     result.success(start(new Intent(Settings.ACTION_DREAM_SETTINGS))
                         || start(new Intent(Settings.ACTION_DISPLAY_SETTINGS)));
                     break;

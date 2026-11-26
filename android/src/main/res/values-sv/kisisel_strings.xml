@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Laddningsklocka (skärmsläckare)</string>
     <string name="kisisel_charge_label">Laddningsanimation</string>
     <string name="kisisel_edge_label">Kantbelysning</string>
+    <string name="kisisel_island_label">Notisö</string>
+    <string name="kisisel_aod_label">Alltid på-skärm</string>
+    <string name="kisisel_call_label">Blixt vid inkommande samtal</string>
     <string name="kisisel_w_clock">Klocka</string>
     <string name="kisisel_w_date">Datum</string>
     <string name="kisisel_w_countdown">Nedräkning</string>

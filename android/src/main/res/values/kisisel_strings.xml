@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Charging Clock (Screensaver)</string>
     <string name="kisisel_charge_label">Charging Animation</string>
     <string name="kisisel_edge_label">Edge Lighting</string>
+    <string name="kisisel_island_label">Notification Island</string>
+    <string name="kisisel_aod_label">Always-On Display</string>
+    <string name="kisisel_call_label">Flash on Incoming Calls</string>
     <string name="kisisel_w_clock">Clock</string>
     <string name="kisisel_w_date">Date</string>
     <string name="kisisel_w_countdown">Countdown</string>

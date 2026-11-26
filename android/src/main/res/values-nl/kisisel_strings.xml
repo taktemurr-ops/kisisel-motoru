@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Laadklok (schermbeveiliging)</string>
     <string name="kisisel_charge_label">Laadanimatie</string>
     <string name="kisisel_edge_label">Randverlichting</string>
+    <string name="kisisel_island_label">Meldingeneiland</string>
+    <string name="kisisel_aod_label">Always-on-scherm</string>
+    <string name="kisisel_call_label">Flits bij inkomende oproepen</string>
     <string name="kisisel_w_clock">Klok</string>
     <string name="kisisel_w_date">Datum</string>
     <string name="kisisel_w_countdown">Aftellen</string>

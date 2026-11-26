@@ -6,6 +6,9 @@
     <string name="kisisel_dream_label">Ladeuhr (Bildschirmschoner)</string>
     <string name="kisisel_charge_label">Lade-Animation</string>
     <string name="kisisel_edge_label">Randbeleuchtung</string>
+    <string name="kisisel_island_label">Benachrichtigungsinsel</string>
+    <string name="kisisel_aod_label">Always-On-Display</string>
+    <string name="kisisel_call_label">Blitz bei eingehenden Anrufen</string>
     <string name="kisisel_w_clock">Uhr</string>
     <string name="kisisel_w_date">Datum</string>
     <string name="kisisel_w_countdown">Countdown</string>
