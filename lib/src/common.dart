@@ -12,6 +12,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:studio_core/app/studio_ui.dart';
 import 'package:studio_core/apps/apps.dart';
 
 import 'platform/export.dart';
@@ -73,20 +74,30 @@ class Choice<T> extends StatelessWidget {
   final ValueChanged<T> onChanged;
   const Choice({super.key, required this.values, required this.labels, required this.selected, required this.onChanged});
 
+  /// Onaylı tasarımın hap çipleri (seçili olan vurgu renginde).
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: SegmentedButton<T>(
-          showSelectedIcon: false,
-          segments: [
-            for (var i = 0; i < values.length; i++) ButtonSegment<T>(value: values[i], label: Text(labels[i])),
-          ],
-          selected: {selected},
-          onSelectionChanged: (s) => onChanged(s.first),
-        ),
+        child: Row(children: [
+          for (var i = 0; i < values.length; i++)
+            Padding(
+              padding: const EdgeInsetsDirectional.only(end: 8),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: 48),
+                child: Center(
+                  widthFactor: 1,
+                  child: StudioPill(
+                    label: labels[i],
+                    selected: values[i] == selected,
+                    onTap: () => onChanged(values[i]),
+                  ),
+                ),
+              ),
+            ),
+        ]),
       ),
     );
   }
@@ -115,11 +126,11 @@ class Pick<T> extends StatelessWidget {
       child: DropdownButtonFormField<T>(
         value: value,
         isExpanded: true,
+        dropdownColor: StudioLook.of(context).sheet,
+        borderRadius: BorderRadius.circular(16),
+        iconEnabledColor: StudioLook.of(context).accent,
         decoration: InputDecoration(
           labelText: label,
-          filled: true,
-          fillColor: Colors.white.withValues(alpha: 0.06),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
         ),
         items: [for (final v in values) DropdownMenuItem<T>(value: v, child: Text(text(v), overflow: TextOverflow.ellipsis))],
         onChanged: (v) {
@@ -159,9 +170,6 @@ class AppTextField extends StatelessWidget {
         decoration: InputDecoration(
           labelText: label,
           alignLabelWithHint: maxLines > 1,
-          filled: true,
-          fillColor: Colors.white.withValues(alpha: 0.06),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
         ),
       ),
     );
@@ -269,12 +277,16 @@ class UnlockButton extends StatelessWidget {
   const UnlockButton({super.key, required this.t, required this.onUnlocked});
 
   @override
-  Widget build(BuildContext context) => AppButton(
-        label: t.tx('unlock_ad'),
-        icon: Icons.ondemand_video_rounded,
-        onPressed: () async {
-          if (await t.unlockForToday('extras')) onUnlocked();
-        },
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6),
+        child: StudioButton(
+          tone: StudioButtonTone.gold,
+          label: t.tx('unlock_ad'),
+          icon: Icons.ondemand_video_rounded,
+          onPressed: () async {
+            if (await t.unlockForToday('extras')) onUnlocked();
+          },
+        ),
       );
 }
 
