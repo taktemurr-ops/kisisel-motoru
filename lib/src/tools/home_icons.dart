@@ -20,6 +20,7 @@ import '../core.dart';
 import '../ek4_core.dart';
 import '../platform/native.dart';
 import 'icons.dart' show drawGlyph;
+import '../fold.dart';
 
 /// Temalı kısayol simgesini [size] kutusuna çizer.
 void paintAesthetic(Canvas canvas, double size, AestheticTheme th, String shape, String glyph, String letter) {
@@ -310,8 +311,8 @@ class _AppPickerState extends State<_AppPicker> {
 
   @override
   Widget build(BuildContext context) {
-    final q = _q.toLowerCase();
-    final list = q.isEmpty ? widget.apps : widget.apps.where((a) => a.label.toLowerCase().contains(q)).toList();
+    final q = _q.folded;
+    final list = q.isEmpty ? widget.apps : widget.apps.where((a) => a.label.folded.contains(q)).toList();
     return SafeArea(
       child: SizedBox(
         height: MediaQuery.sizeOf(context).height * 0.75,
